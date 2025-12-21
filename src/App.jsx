@@ -130,10 +130,26 @@ export default function AquaValureLanding() {
     name: '', phone: '', email: '', farmName: '', ponds: '', message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      });
+      setIsSubmitted(true);
+    } catch (error) {
+      alert('שגיאה בשליחת הטופס. אנא נסה שוב.');
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -382,26 +398,39 @@ export default function AquaValureLanding() {
                 <p className="text-teal-100">קיבלנו את הפרטים ונחזור אליך בהקדם</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
+              <form 
+                name="contact" 
+                method="POST" 
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                onSubmit={handleSubmit} 
+                className="grid md:grid-cols-2 gap-6"
+              >
+                <input type="hidden" name="form-name" value="contact" />
+                <p className="hidden">
+                  <label>
+                    Don't fill this out: <input name="bot-field" />
+                  </label>
+                </p>
                 <div>
                   <label className="block text-teal-100 text-sm mb-2">שם מלא *</label>
-                  <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none focus:border-white/50" placeholder="ישראל ישראלי" />
+                  <input type="text" name="name" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none focus:border-white/50" placeholder="ישראל ישראלי" />
                 </div>
                 <div>
                   <label className="block text-teal-100 text-sm mb-2">טלפון *</label>
-                  <input type="tel" required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none focus:border-white/50" placeholder="050-1234567" />
+                  <input type="tel" name="phone" required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none focus:border-white/50" placeholder="050-1234567" />
                 </div>
                 <div>
                   <label className="block text-teal-100 text-sm mb-2">אימייל *</label>
-                  <input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none focus:border-white/50" placeholder="email@example.com" />
+                  <input type="email" name="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none focus:border-white/50" placeholder="email@example.com" />
                 </div>
                 <div>
                   <label className="block text-teal-100 text-sm mb-2">שם המדגה</label>
-                  <input type="text" value={formData.farmName} onChange={(e) => setFormData({...formData, farmName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none focus:border-white/50" placeholder="מדגת השרון" />
+                  <input type="text" name="farmName" value={formData.farmName} onChange={(e) => setFormData({...formData, farmName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none focus:border-white/50" placeholder="מדגת השרון" />
                 </div>
                 <div>
                   <label className="block text-teal-100 text-sm mb-2">כמה בריכות?</label>
-                  <select value={formData.ponds} onChange={(e) => setFormData({...formData, ponds: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none">
+                  <select name="ponds" value={formData.ponds} onChange={(e) => setFormData({...formData, ponds: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none">
                     <option value="" className="text-slate-800">בחר...</option>
                     <option value="1-5" className="text-slate-800">1-5</option>
                     <option value="6-15" className="text-slate-800">6-15</option>
@@ -411,11 +440,21 @@ export default function AquaValureLanding() {
                 </div>
                 <div>
                   <label className="block text-teal-100 text-sm mb-2">הערות</label>
-                  <input type="text" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none" placeholder="משהו שחשוב לך?" />
+                  <input type="text" name="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-teal-200 focus:outline-none" placeholder="משהו שחשוב לך?" />
                 </div>
                 <div className="md:col-span-2">
-                  <button type="submit" className="w-full py-4 bg-white text-teal-700 rounded-xl font-bold text-lg hover:bg-teal-50 transition flex items-center justify-center gap-2 shadow-lg">
-                    <Send className="w-5 h-5" /><span>שלח בקשה להדגמה</span>
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-white text-teal-700 rounded-xl font-bold text-lg hover:bg-teal-50 transition flex items-center justify-center gap-2 shadow-lg disabled:opacity-70"
+                  >
+                    {isSubmitting ? (
+                      <span>שולח...</span>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" /><span>שלח בקשה להדגמה</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
