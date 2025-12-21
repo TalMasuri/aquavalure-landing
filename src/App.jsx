@@ -123,6 +123,18 @@ const ArrowLeft = ({ className }) => (
   </svg>
 );
 
+const MessageCircle = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+  </svg>
+);
+
+const Globe = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>
+  </svg>
+);
+
 export default function AquaValureLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
@@ -296,18 +308,21 @@ export default function AquaValureLanding() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">הכל במערכת אחת פשוטה</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {[
-              { icon: <Droplets className="w-6 h-6" />, title: 'ניהול בריכות', desc: 'מעקב סטטוס, היסטוריה, הערות' },
-              { icon: <ThermometerSun className="w-6 h-6" />, title: 'מדידות איכות מים', desc: 'חמצן, pH, טמפרטורה + התראות' },
-              { icon: <Fish className="w-6 h-6" />, title: 'מלאי דגים', desc: 'כמויות, העברות, חישוב אוטומטי' },
-              { icon: <ShoppingCart className="w-6 h-6" />, title: 'מכירות וסוחרים', desc: 'עסקאות, מחירונים, דוחות' },
-              { icon: <Users className="w-6 h-6" />, title: 'שעות עבודה', desc: 'מעקב עובדים, ייצוא לאקסל' },
-              { icon: <TrendingUp className="w-6 h-6" />, title: 'דוחות וגרפים', desc: 'מגמות, השוואות, ניתוח' }
+              { icon: <Droplets className="w-5 h-5 sm:w-6 sm:h-6" />, title: 'ניהול בריכות', desc: 'מעקב סטטוס, היסטוריה, הערות' },
+              { icon: <ThermometerSun className="w-5 h-5 sm:w-6 sm:h-6" />, title: 'מדידות מים', desc: 'חמצן, pH, טמפרטורה + התראות' },
+              { icon: <Fish className="w-5 h-5 sm:w-6 sm:h-6" />, title: 'מלאי דגים', desc: 'כמויות, העברות, חישוב אוטומטי' },
+              { icon: <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />, title: 'מכירות', desc: 'עסקאות, מחירונים, דוחות' },
+              { icon: <Users className="w-5 h-5 sm:w-6 sm:h-6" />, title: 'שעות עבודה', desc: 'מעקב עובדים, ייצוא לאקסל' },
+              { icon: <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6" />, title: 'דוחות וגרפים', desc: 'מגמות, השוואות, ניתוח' },
+              { icon: <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />, title: 'עוזר AI', desc: 'שאלות ותשובות על המדגה' },
+              { icon: <Globe className="w-5 h-5 sm:w-6 sm:h-6" />, title: 'תרגום לתאילנדית', desc: 'הודעות לעובדים בשפתם' }
             ].map((f, i) => (
-              <div key={i} className="group flex items-start gap-4 p-6 bg-white rounded-2xl border border-slate-100 hover:border-teal-200 hover:bg-teal-50/30 transition">
-                <div className="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-500 group-hover:text-white transition">{f.icon}</div>
-                <div><h3 className="font-semibold text-slate-900 mb-1">{f.title}</h3><p className="text-sm text-slate-600">{f.desc}</p></div>
+              <div key={i} className="group flex flex-col items-center text-center p-3 sm:p-6 bg-white rounded-2xl border border-slate-100 hover:border-teal-200 hover:bg-teal-50/30 transition">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-500 group-hover:text-white transition mb-2 sm:mb-3">{f.icon}</div>
+                <h3 className="font-semibold text-slate-900 text-sm sm:text-base mb-1">{f.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-snug">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -318,7 +333,7 @@ export default function AquaValureLanding() {
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">בנוי למגדלי דגים</h2>
-          <p className="text-lg text-slate-600 mb-12">מתאים לכל סוגי חוות הגידול</p>
+          <p className="text-lg text-slate-600 mb-12">מתאים לכל סוגי החוות והמדגות</p>
           <div className="flex flex-wrap justify-center gap-4">
             {[
               'מים מתוקים',
