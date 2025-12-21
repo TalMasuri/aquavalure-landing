@@ -333,14 +333,14 @@ export default function AquaValureLanding() {
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">בנוי למגדלי דגים</h2>
-          <p className="text-lg text-slate-600 mb-12">מתאים לכל סוגי החוות והמדגות</p>
+          <p className="text-lg text-slate-600 mb-12">מתאים לכל סוגי חוות הגידול</p>
           <div className="flex flex-wrap justify-center gap-4">
             {[
               'מים מתוקים',
               'חוות דגי ים',
               'בריכות שרימפסים',
               'מערכות אקווה-פוניקה',
-              'מדגות נוי ואקווריום'
+              'דגי נוי ואקווריום'
             ].map((type, i) => (
               <div key={i} className="flex items-center gap-2 px-5 py-3 bg-white rounded-full shadow-md border border-slate-100">
                 <Check className="w-5 h-5 text-teal-500" />
