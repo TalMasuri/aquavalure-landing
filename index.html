@@ -12,6 +12,21 @@
     <title>AquaValure - מערכת ניהול מדגה חכמה</title>
   </head>
   <body>
+    <!-- Hidden form for Netlify detection -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <input type="text" name="farmName" />
+      <select name="ponds">
+        <option value="1-5">1-5</option>
+        <option value="6-15">6-15</option>
+        <option value="16-30">16-30</option>
+        <option value="30+">30+</option>
+      </select>
+      <input type="text" name="message" />
+    </form>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
