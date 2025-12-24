@@ -392,30 +392,30 @@ export default function AquaValureLanding() {
           <img 
             src="/hero-image.png" 
             alt="" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-right md:object-center"
           />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-l from-slate-900/85 via-slate-900/70 to-slate-900/50"></div>
+          {/* Lighter Overlay - different for mobile and desktop */}
+          <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-l from-slate-900/40 via-slate-900/30 to-transparent"></div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20">
-          <div className="max-w-2xl mr-0 ml-auto text-right">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur rounded-full text-teal-200 text-sm font-medium mb-6 border border-white/20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20 w-full">
+          <div className="max-w-2xl mx-auto md:mr-0 md:ml-auto text-center md:text-right">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6 border border-white/30">
               <Waves className="w-4 h-4" />
               <span>מערכת ניהול לחוות גידול דגים</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
               לראות הכל.
               <span className="block text-teal-300">להחליט נכון.</span>
             </h1>
 
-            <p className="text-xl text-slate-200 mb-8">
+            <p className="text-lg sm:text-xl text-white/90 mb-8 drop-shadow">
               אתה מכיר את המדגה הכי טוב, והמערכת מרכזת מדידות, מלאי ותנועות כדי שתראה תמונה מלאה בכל רגע.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a
                 href="#contact"
                 className="group px-8 py-4 water-gradient text-white rounded-2xl font-semibold text-lg shadow-xl shadow-teal-500/30 flex items-center justify-center gap-2"
@@ -425,21 +425,21 @@ export default function AquaValureLanding() {
               </a>
               <a
                 href="#about"
-                className="px-8 py-4 bg-white/10 backdrop-blur text-white rounded-2xl font-semibold text-lg border border-white/30 hover:bg-white/20 transition flex items-center justify-center"
+                className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-2xl font-semibold text-lg border border-white/40 hover:bg-white/30 transition flex items-center justify-center"
               >
                 איך זה עובד
               </a>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 mt-8 text-sm text-slate-300">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-8 justify-center md:justify-start text-sm text-white/90">
               {[
                 "מסך אחד לכל הנתונים",
                 "היסטוריה לכל בריכה",
                 "התראות על חריגות",
                 "עובד מהנייד",
               ].map((t, i) => (
-                <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-3 py-1.5">
-                  <Check className="w-4 h-4 text-teal-400" />
+                <div key={i} className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full px-3 py-1.5">
+                  <Check className="w-4 h-4 text-teal-300" />
                   <span>{t}</span>
                 </div>
               ))}
